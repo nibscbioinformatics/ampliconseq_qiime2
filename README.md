@@ -19,16 +19,19 @@ Download the pre-trained classifer [here](https://data.qiime2.org/2021.2/common/
 Activate conda (If not installed, see instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html))
 
 Build the conda environment:
-`conda env create -n qiime2 --file qiime2.yml`
+```
+conda env create -n qiime2 --file qiime2.yml
+```
 
-`rm qiime2.yml`
 
 Activate environment:
-`conda activate qiime2`
+```
+conda activate qiime2
+```
 
 Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads|:
 
-'``
+```
 #!/usr/bin/env bash
 ### Workflow for shotgun metagenomics analysis
 
@@ -43,4 +46,6 @@ READS='/FULL/PATH/TO/DIR/'
 
  
 Run the pipeline:
-`./run_ampliconseq.sh`
+```
+./run_ampliconseq.sh
+```
