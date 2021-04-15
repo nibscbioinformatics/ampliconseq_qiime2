@@ -8,7 +8,11 @@ Data sourced from folder on HPC:
 ## Running the Pipeline
 
 Clone the github directory and `cd` into it:
-`git clone https://github.com/nibscbioinformatics/ampliconseq_qiime2.git && cd ampliconseq_qiime2/` 
+```
+git clone https://github.com/nibscbioinformatics/ampliconseq_qiime2.git \
+cd ampliconseq_qiime2/
+``` 
+
 
 Download the pre-trained classifer [here](https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qza) 
 
@@ -22,19 +26,21 @@ Build the conda environment:
 Activate environment:
 `conda activate qiime2`
 
-Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads
+Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads|:
 
-`#!/usr/bin/env bash`
-`### Workflow for shotgun metagenomics analysis`
+'``
+#!/usr/bin/env bash
+### Workflow for shotgun metagenomics analysis
 
-`## Root folder name`
-`NAME=nibsc_ampliconseq`
+## Root folder name
+NAME=nibsc_ampliconseq
 
-`echo "Please Check File Paths in run_ampliconseq.sh"`
+echo "Please Check File Paths in run_ampliconseq.sh"
 
-`## data file locations`
-`READS='/FULL/PATH/TO/DIR/'`
+## data file locations
+READS='/FULL/PATH/TO/DIR/'
+```
 
-
+ 
 Run the pipeline:
 `./run_ampliconseq.sh`
