@@ -17,8 +17,7 @@ ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
    #fetch_example_data # -> Uncomment this function if you want to run pipeline on test data
-   copy_rawdata #large files.. create sys link instead?
-   activate_conda 
+   copy_rawdata #large files.. create sys link instead? 
    import_data 
    run_cutadapt 
    run_joinpairs  
@@ -38,7 +37,7 @@ create_folders(){
    echo "Creating sub-folders..."
 
    # Sub-folders in the root folder
-   for FOLDER in analysis tools rawdata scripts docs reference
+   for FOLDER in analysis tools rawdata
    do
       mkdir -p ${NAME}/${FOLDER}
    done
@@ -55,9 +54,6 @@ set_variables(){
    export TOOLS_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/tools
    export RAWDATA_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/rawdata
    export ANALYSIS_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/analysis
-   export REFERENCE_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/reference
-   export DOCS_FOLDER=$(pwd)//$ROOT_FOLDER_NAME/docs
-   export SCRIPT_FOLDER=$(pwd)//$ROOT_FOLDER_NAME/scripts
    export LINKPATH_DB=$LINKPATH_DB
 
    # soft link classifier to tools folder
@@ -71,7 +67,7 @@ set_variables(){
 
 copy_rawdata(){
 
-   lst=$(ls -d ${READS}/*.fastq.gz) #make this more robust?
+   lst=$(ls -d ${READS}/*.fastq.gz) 
    for file in $lst
    do
       echo "Copying ${file}"
@@ -105,15 +101,6 @@ import_data(){
 
    echo "DONE Importing!"
    cd -
-
-}
-
-
-activate_conda(){
-
-   eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda3
-   conda activate qiime2
 
 }
 

@@ -1,5 +1,10 @@
 ## 16S amplcon sequencing using QIMME2
 
+
+## Requirements
+
+- Conda (if not installed see instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) )
+
 ## Data 
 Data sourced from folder on HPC:
 `/usr/share/sequencing/miseq/output/210326_M01745_0309_000000000-JK55H/Data/Intensities/BaseCalls`
@@ -20,14 +25,13 @@ wget https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qz
 mv silva-138-99-515-806-nb-classifier.qza docs/
 ```
 
-Activate conda (If not installed, see instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html))
-
-Build the conda environment:
+Acitvate conda & build the conda qiime2 environment:
 ```
+conda3 #conda activate
 conda env create -n qiime2 --file qiime2.yml
 ```
 
-Activate environment:
+Activate the Qiime2 environment:
 ```
 conda activate qiime2
 ```
