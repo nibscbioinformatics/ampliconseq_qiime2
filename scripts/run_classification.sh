@@ -3,17 +3,8 @@
 ### Strain Classification Using Pre-trained Classifier 
 
 classification_main(){
-	
-        activate_conda_env
+
 	run_classification
-
-}
-
-activate_conda_env(){
-	
-        eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 run_classification(){

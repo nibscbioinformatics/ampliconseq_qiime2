@@ -4,16 +4,7 @@
 
 cutadapt_main(){
 	
-        activate_conda_env
 	cutadapt_trim
-
-}
-
-activate_conda_env(){
-	
-        eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 cutadapt_trim(){

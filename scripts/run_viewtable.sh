@@ -2,17 +2,8 @@
 
 viewfilter_main(){
 	
-    activate_conda_env
 	summarise_table
     #view_table #turn this off as stalls the process
-
-}
-
-activate_conda_env(){
-	
-    eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 summarise_table(){

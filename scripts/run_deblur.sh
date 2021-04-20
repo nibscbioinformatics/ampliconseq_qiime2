@@ -1,19 +1,10 @@
 #!/usr/bin/env bash
 
-### \Deblur denoising (adjust parameters as necessary)
+### Deblur denoising (adjust parameters as necessary)
 
 deblur_main(){
 	
-        activate_conda_env
 	run_deblur
-
-}
-
-activate_conda_env(){
-	
-        eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 run_deblur(){
@@ -31,7 +22,6 @@ qiime deblur denoise-16S \
   --p-jobs-to-start 4 \
   --p-sample-stats \
   --o-stats ${ANALYSIS_FOLDER}/deblur/deblur-stats.qza  
-  #--output-dir ${ANALYSIS_FOLDER}/deblur assign all output 
 
 }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-### Workflow for shotgun metagenomics analysis
+### Workflow for amplicon sequencing analysis pipeline
 
 ## Root folder name
 NAME=nibsc_ampliconseq
@@ -17,7 +17,8 @@ ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
    #fetch_example_data # -> Uncomment this function if you want to run pipeline on test data
-   copy_rawdata # may not make sense with large files.. create sys link instead?
+   copy_rawdata #large files.. create sys link instead?
+   activate_conda 
    import_data 
    run_cutadapt 
    run_joinpairs  
@@ -60,19 +61,17 @@ set_variables(){
    export LINKPATH_DB=$LINKPATH_DB
 
    # soft link classifier to tools folder
-   ln -s $(pwd)/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/
+   ln -s $(pwd)/docs/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/
 
    echo "DONE setting variables for paths!"
 
 }
 
-#source to avoid need for execution permissions
-
-# copy raw data from source folder to analysis folder structure
+# copy raw data.. (create link instead to save space?)
 
 copy_rawdata(){
 
-   lst=$(ls -d ${READS}/*.fastq.gz)
+   lst=$(ls -d ${READS}/*.fastq.gz) #make this more robust?
    for file in $lst
    do
       echo "Copying ${file}"
@@ -81,9 +80,7 @@ copy_rawdata(){
    echo "DONE copying rawdata!"
 }
 
-# run pipeline using test data (uncomment above)
-# this is metagenomics data... change this to 16S example
-
+# run pipeline using test data (find suitable test data)
 
 fetch_example_data(){
 
@@ -91,6 +88,7 @@ fetch_example_data(){
 
    cd $NAME/example_data
 
+   #change eg data
    #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_1.fastq.gz
    #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_2.fastq.gz
 
@@ -103,10 +101,19 @@ fetch_example_data(){
 import_data(){
    echo "Importing data to QIMME2"
 
-   . ./import_data.sh
+   . ./scripts/import_data.sh
 
    echo "DONE Importing!"
    cd -
+
+}
+
+
+activate_conda(){
+
+   eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
+	conda3
+   conda activate qiime2
 
 }
 
@@ -115,7 +122,7 @@ import_data(){
 run_cutadapt(){
    echo "Running Cutadapt Adapter Trimming"
 
-   . ./run_cutadapt.sh
+   . ./scripts/run_cutadapt.sh
 
    echo "DONE Trimming!"
    cd - #prob dont need these if running in analysis folder
@@ -127,7 +134,7 @@ run_cutadapt(){
 run_joinpairs(){
    echo "Running Read Merging"
 
-   . ./run_joinpairs.sh
+   . ./scripts/run_joinpairs.sh
 
    echo "DONE Merging!"
    cd -
@@ -138,7 +145,7 @@ run_joinpairs(){
 run_qualityfiltering(){
    echo "Running Quality Filtering"
 
-   . ./run_qualfiltering.sh
+   . ./scripts/run_qualfiltering.sh
 
    echo "DONE Quality Filtering!"
    cd -
@@ -149,7 +156,7 @@ run_qualityfiltering(){
 run_deblur(){
    echo "Running Deblur"
 
-   . ./run_deblur.sh
+   . ./scripts/run_deblur.sh
 
    echo "DONE Deblur!"
    cd -
@@ -160,7 +167,7 @@ run_deblur(){
 run_classification(){
    echo "Running Classification"
 
-   . ./run_classification.sh
+   . ./scripts/run_classification.sh
 
    echo "DONE Classification!"
    cd -
@@ -171,7 +178,7 @@ run_classification(){
 run_filterfeatures(){
    echo "Running Feature Filter"
 
-   . ./run_filtertable.sh
+   . ./scripts/run_filtertable.sh
 
    echo "DONE Feature Filter!"
    cd -
@@ -182,7 +189,7 @@ run_filterfeatures(){
 run_viewfeatures(){
    echo "Produce Filter Table"
 
-   . ./run_viewtable.sh
+   . ./scripts/run_viewtable.sh
 
    echo "DONE Filter Table!"
    cd -
@@ -195,7 +202,7 @@ run_viewfeatures(){
 run_filterabundance(){
    echo " Filter Table Abundances"
 
-   . ./run_freqfiltering.sh
+   . ./scripts/run_freqfiltering.sh
 
    echo "DONE Filter Table!"
    cd -
@@ -205,7 +212,7 @@ run_filterabundance(){
 run_barplot(){
    echo " Visualising Abundances"
 
-   . ./run_barplot.sh
+   . ./scripts/run_barplot.sh
 
    echo "DONE!"
    cd -

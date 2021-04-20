@@ -13,8 +13,12 @@ git clone https://github.com/nibscbioinformatics/ampliconseq_qiime2.git \
 cd ampliconseq_qiime2/
 ``` 
 
+Download the pre-trained classifer [here](https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qza) and place in docs folder:
 
-Download the pre-trained classifer [here](https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qza) 
+```
+wget https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qza
+mv silva-138-99-515-806-nb-classifier.qza docs/
+```
 
 Activate conda (If not installed, see instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html))
 
@@ -23,17 +27,16 @@ Build the conda environment:
 conda env create -n qiime2 --file qiime2.yml
 ```
 
-
 Activate environment:
 ```
 conda activate qiime2
 ```
 
-Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads|:
+Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads:
 
 ```
 #!/usr/bin/env bash
-### Workflow for shotgun metagenomics analysis
+### Workflow for amplicon sequencing analysis pipeline
 
 ## Root folder name
 NAME=nibsc_ampliconseq

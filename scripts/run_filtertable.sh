@@ -4,16 +4,7 @@
 
 tfilter_main(){
 	
-    activate_conda_env
 	filter_table
-
-}
-
-activate_conda_env(){
-	
-    eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 filter_table(){

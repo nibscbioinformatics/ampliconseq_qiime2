@@ -4,18 +4,10 @@
 
 freqfilter_main(){
 	
-    activate_conda_env
 	abundance_filter
     summarise_table
-   # view_table #activate when x11 forwarding sorted
+   # view_table #sort x11 forwarding 
 
-}
-
-activate_conda_env(){
-	
-    eval "$(conda shell.bash hook)" #conda initilization - more generalisable dont specify conda.sh location
-	conda activate qiime2
-	
 }
 
 abundance_filter(){
