@@ -36,6 +36,7 @@ ampliconseq_analysis_main(){
    run_barplot 
    echo $LINKPATH_DB
 }
+```
 
 This will download a small test dataset and execute the pipeline to ensure everything is working correctly.
 The data sourced from folder on HPC:
@@ -57,7 +58,7 @@ wget https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qz
 mv silva-138-99-515-806-nb-classifier.qza docs/
 ```
 
-3. Populate the metadata template in the `docs` folder with your  experiments specifications/
+3. Populate the metadata template in the `docs` folder with your experiments specifications. Please follow QIIME2 metadata guidelines [here](https://docs.qiime2.org/2021.2/tutorials/metadata/)
 
 4. Acitvate conda & build the conda qiime2 environment:
 ```
