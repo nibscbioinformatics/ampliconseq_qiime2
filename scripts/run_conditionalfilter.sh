@@ -4,6 +4,7 @@
 condfilter_main(){
 	
 	conditional_filter
+	summarise_table
 }
 
 conditional_filter(){
@@ -11,10 +12,21 @@ conditional_filter(){
 cd ${ANALYSIS_FOLDER}
 mkdir -p ${ANALYSIS_FOLDER}/deblur/conditional_ftest/
 
-qiime feature-table filter-features-conditionally  \
- --i-demux ${ANALYSIS_FOLDER}/deblur/joined_sequences.qza \
- --o-filtered-sequences ${ANALYSIS_FOLDER}/deblur/conditional_ftest/QC_demux_trimmed-joined.qza \
- --o-filter-stats ${ANALYSIS_FOLDER}/deblur/conditional_ftest/qc_demux_stats.qza 
+qiime feature-table filter-features-conditionally \
+ --i-table ${ANALYSIS_FOLDER}/deblur/table-deblur.qza \
+ --p-prevalence 0.99 \
+ --p-abundance 0.05 \
+ --o-filtered-table ${ANALYSIS_FOLDER}/deblur/conditional_ftest/cond_filtered.qza 
+
+}
+
+summarise_table(){
+
+cd ${ANALYSIS_FOLDER}
+
+qiime feature-table summarize \
+--i-table ${ANALYSIS_FOLDER}/deblur/conditional_ftest/cond_filtered.qza \
+--o-visualization ${ANALYSIS_FOLDER}/deblur/conditional_ftest/cond_filtered.qzv
 
 }
 

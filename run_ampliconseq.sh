@@ -17,16 +17,17 @@ ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
   # test_data # -> Uncomment this function if you want to run pipeline on test data
-   import_data 
-   run_cutadapt 
-   run_joinpairs  
-   run_qualityfiltering 
-   run_deblur 
-   run_classification 
+  # import_data 
+  # run_cutadapt 
+  # run_joinpairs  
+  # run_qualityfiltering 
+  # run_deblur 
+  # run_classification 
    run_filterfeatures #change to num of samples in your data
    run_viewfeatures #commands work but issues with X11 forwarding for me...
    run_filterabundance
    run_barplot #need metadata file from Chrysi
+   run_conditionalfilter
    echo $LINKPATH_DB
 }
 
@@ -198,11 +199,21 @@ run_filterabundance(){
 
 run_barplot(){
    echo " Visualising Abundances"
-   $(pwd)
+
    . ./scripts/run_barplot.sh
 
    echo "DONE!"
    cd -
 }
+
+run_conditionalfilter(){
+
+   echo 'Conditional filter test'
+
+   . ./scripts/run_conditionalfilter.sh
+
+   echo 'DONE Conditional Filter!'
+}
+
 
 ampliconseq_analysis_main
