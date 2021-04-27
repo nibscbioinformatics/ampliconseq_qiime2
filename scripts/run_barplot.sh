@@ -14,10 +14,9 @@ cd ${ANALYSIS_FOLDER}
 
 qiime taxa barplot \
  --i-table ${ANALYSIS_FOLDER}/deblur/final-filtered-table.qza \
- --i-taxonomy ${ANALYSIS_FOLDER}/deblur/taxonomy.qza \
+ --i-taxonomy ${ANALYSIS_FOLDER}/deblur/classification_output/taxonomy.qza \
  --o-visualization ${ANALYSIS_FOLDER}/deblur/barplots.qzv \
- #--m-metadata-file ${ANALYSIS_FOLDER}/metadata.txt get this file
-
+ --m-metadata-file  ${TOOLS_FOLDER}/metadata.txt 
 }
 
 view_plot(){

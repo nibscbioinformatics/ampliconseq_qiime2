@@ -9,15 +9,14 @@ NAME=nibsc_ampliconseq
 echo "Please Check File Paths in run_ampliconseq.sh"
 
 ## data file locations
-READS='/home/AD/mgordon/ampliconseq_qiime2/data/' #change path to you data directory... use $1 for CL input?
+READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/06_04_21_16S_Amplicon/ampliconseq_qiime2/rawdata/'
 
 ## Comment out to remove individual process
 
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-   #fetch_example_data # -> Uncomment this function if you want to run pipeline on test data
-   copy_rawdata #large files.. create sys link instead? 
+  # test_data # -> Uncomment this function if you want to run pipeline on test data
    import_data 
    run_cutadapt 
    run_joinpairs  
@@ -56,46 +55,47 @@ set_variables(){
    export ANALYSIS_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/analysis
    export LINKPATH_DB=$LINKPATH_DB
 
-   # soft link classifier to tools folder
+   #soft link files 
+   echo "Lnking Folders"
    ln -s $(pwd)/docs/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/
+   ln -s -fsv ${READS}/*.fastq.gz ${RAWDATA_FOLDER}
+   ln -s -fsv $(pwd)/docs/metadata.txt  ${TOOLS_FOLDER}/
 
-   echo "DONE setting variables for paths!"
-
-}
-
-# copy raw data.. (create link instead to save space?)
-
-copy_rawdata(){
-
-   lst=$(ls -d ${READS}/*.fastq.gz) 
-   for file in $lst
-   do
-      echo "Copying ${file}"
-      cp ${file} ${RAWDATA_FOLDER}/
-   done
-   echo "DONE copying rawdata!"
+   #echo "DONE linking folders!"
 }
 
 # run pipeline using test data (find suitable test data)
 
-fetch_example_data(){
+test_data(){
 
-   mkdir -p $NAME/example_data
+echo "Copying test data.."
 
-   cd $NAME/example_data
+   mkdir -p ${ROOT_FOLDER_NAME}/example_data
+   export RAWDATA_FOLDER=$(pwd)/${ROOT_FOLDER_NAME}/example_data #change input folder to example
+   cd ${RAWDATA_FOLDER}
 
-   #change eg data
+   #change data.. use cp for no w
+   echo this is the current directory
+
+   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R1_001.fastq.gz .
+   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R2_001.fastq.gz .
+   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R1_001.fastq.gz .
+   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R2_001.fastq.gz .
+
    #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_1.fastq.gz
    #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_2.fastq.gz
 
-   SRC_RAWDATA=$NAME/example_data
    cd -
+
+   echo "DONE copying test data"
 }
 
 # Import data into qiime2
 
 import_data(){
    echo "Importing data to QIMME2"
+
+   # link be
 
    . ./scripts/import_data.sh
 
@@ -153,7 +153,7 @@ run_deblur(){
 
 run_classification(){
    echo "Running Classification"
-
+   
    . ./scripts/run_classification.sh
 
    echo "DONE Classification!"
@@ -183,7 +183,7 @@ run_viewfeatures(){
 }
 
 # Filter features below 0.05% total abundance 
-# this is 1610 for the two samples used but hard coded!!! need to change something here
+#  hard coded!!! need to change something here
 # try the other filtering function and compare
 
 run_filterabundance(){
@@ -192,13 +192,13 @@ run_filterabundance(){
    . ./scripts/run_freqfiltering.sh
 
    echo "DONE Filter Table!"
-   cd -
+   cd ../../
 }
 
 
 run_barplot(){
    echo " Visualising Abundances"
-
+   $(pwd)
    . ./scripts/run_barplot.sh
 
    echo "DONE!"

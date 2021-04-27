@@ -19,7 +19,6 @@ qiime feature-classifier classify-sklearn  \
  --i-classifier ${TOOLS_FOLDER}/silva-138-99-515-806-nb-classifier.qza  \
  --i-reads ${ANALYSIS_FOLDER}/deblur/rep-seqs-deblur.qza  \
  --o-classification ${ANALYSIS_FOLDER}/deblur/classification_output/taxonomy.qza  \
- #--output-dir ${ANALYSIS_FOLDER}/deblur/classification_output  \
  --p-n-jobs -1 
 
 }
