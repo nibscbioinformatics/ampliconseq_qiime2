@@ -14,8 +14,8 @@ mkdir -p ${ANALYSIS_FOLDER}/deblur/conditional_ftest/
 
 qiime feature-table filter-features-conditionally \
  --i-table ${ANALYSIS_FOLDER}/deblur/table-deblur.qza \
- --p-prevalence 0.99 \
- --p-abundance 0.05 \
+ --p-prevalence 0.999 \
+ --p-abundance 0.005 \
  --o-filtered-table ${ANALYSIS_FOLDER}/deblur/conditional_ftest/cond_filtered.qza 
 
 }
