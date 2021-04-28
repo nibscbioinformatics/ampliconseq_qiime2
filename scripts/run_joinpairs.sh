@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-### Cutadapt adapter trimming (adjust parameters as necessary)
+### Join paired reads
 
 join_main(){
 	

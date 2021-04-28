@@ -71,7 +71,7 @@ conda env create -n qiime2 --file docs/qiime2.yml
 conda activate qiime2
 ```
 
-6. Edits the `reads` variable in the `run_amplionseq.sh` script and provide full path to your reads:
+6. Provide the full path to your reads folder by editing the READS variable in the `run_ampliconseq.sh` script :
 
 ```
 #!/usr/bin/env bash
@@ -83,7 +83,7 @@ NAME=nibsc_ampliconseq
 echo "Please Check File Paths in run_ampliconseq.sh"
 
 ## data file locations
-READS='/FULL/PATH/TO/DIR/'
+READS='/FULL/PATH/TO/DIR/' #plug in the full path to your data 
 ```
 
 7. Run the pipeline:

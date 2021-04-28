@@ -18,7 +18,6 @@ qiime cutadapt  trim-paired  \
  --p-adapter-r GGACTACNVGGGTWTCTAAT...TTACCGCGGCKGCTGRCAC \
  --output-dir ${ANALYSIS_FOLDER}/cutadapt_trimmed_reads
 
-
 }
 
 cutadapt_main

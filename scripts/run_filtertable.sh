@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-### Filter the feature table produced by deblur to ensure we only included features present in all replicates
+## Filter the deblur feature table to keep only featues present in all samples
+## Adjust p-min-samples to your number of samples
 
 tfilter_main(){
 	

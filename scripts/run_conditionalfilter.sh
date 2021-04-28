@@ -1,6 +1,5 @@
 # filter features not present in all reps and low abundance (< 0.005) features
 
-
 condfilter_main(){
 	
 	conditional_filter

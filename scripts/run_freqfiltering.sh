@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
-### frequency filtering (adjust parameters as necessary)
+## frequency filtering (adjust parameters as necessary)
+## remove features < 0.005% total abundance
 
 freqfilter_main(){
 	
 	abundance_filter
     summarise_table
-   # view_table #sort x11 forwarding 
+   # view_table #uncomment if X11 forwarding enabled
 
 }
 
 abundance_filter(){
-
-#change the filter value to remove features < 0.05% total abundance
 
 cd ${ANALYSIS_FOLDER}
 
