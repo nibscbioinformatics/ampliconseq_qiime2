@@ -60,10 +60,10 @@ READS='/FULL/PATH/TO/DIR/' #plug in the full path to your data
 
 7. Modify the `metadata.txt` template in the `docs` directory and record your file names and final sample names (*Keep as is if running the test_data*)
 
-For instructions on completing the `metadata.txt` 
+Please fill out the `metadata.txt` as follows:
 SampleID  | Sample
 ------------- | -------------
-fastq_file_name (*_R*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sample_A_2
+fastq_file_name (\*_R\*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sample_A_2
 
 ## Test data
 
