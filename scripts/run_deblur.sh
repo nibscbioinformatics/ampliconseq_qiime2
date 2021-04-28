@@ -11,9 +11,7 @@ run_deblur(){
 
 cd ${ANALYSIS_FOLDER}
 mkdir -p ${ANALYSIS_FOLDER}/deblur
-
-#4 jobs run in parellel 
-
+ 
 qiime deblur denoise-16S \
   --i-demultiplexed-seqs ${ANALYSIS_FOLDER}/QC_reads/QC_demux_trimmed-joined.qza \
   --p-trim-length 250  \

@@ -6,28 +6,25 @@
 ## Root folder name
 NAME=nibsc_ampliconseq
 
-echo "Please Check File Paths in run_ampliconseq.sh"
+echo "Please ensure READS filepath is correct in run_ampliconseq.sh"
 
 ## data file locations
-READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/06_04_21_16S_Amplicon/ampliconseq_qiime2/rawdata/' #change to your data directory
+READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/06_04_21_16S_Amplicon/ampliconseq_qiime2/rawdata/' #change to your data directory (include '/' at end of path)
 
 ## Comment out to remove individual process
 
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-   test_data # -> Uncomment this function if you want to run pipeline on test data
+#   test_data # -> remove '#' before `test_data` to test pipeline
    import_data 
    run_cutadapt 
    run_joinpairs  
    run_qualityfiltering 
    run_deblur 
    run_classification 
-   run_filterfeatures #change to num of samples in your data
-   run_viewfeatures
-   run_filterabundance
-   run_barplot 
-   run_conditionalfilter
+   run_conditionalfilter #retain features detected in all samples & above 0.005% frequency
+   run_barplot
    echo $LINKPATH_DB
 }
 
@@ -190,15 +187,6 @@ run_filterabundance(){
 }
 
 
-run_barplot(){
-   echo " Visualising Abundances"
-
-   . ./scripts/run_barplot.sh
-
-   echo "DONE!"
-   cd -
-}
-
 run_conditionalfilter(){
 
    echo 'Conditional filter test'
@@ -206,7 +194,17 @@ run_conditionalfilter(){
    . ./scripts/run_conditionalfilter.sh
 
    echo 'DONE Conditional Filter!'
+   cd ../../
 }
 
+run_barplot(){
+   echo " Visualising Abundances"
+   echo $pwd
+
+   . ./scripts/run_barplot.sh
+
+   echo "DONE!"
+   cd -
+}
 
 ampliconseq_analysis_main

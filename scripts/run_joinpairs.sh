@@ -11,10 +11,11 @@ join_main(){
 join_pairs(){
 
 cd ${ANALYSIS_FOLDER}
+mkdir -p ${ANALYSIS_FOLDER}/joined_reads
 
 qiime vsearch join-pairs \
  --i-demultiplexed-seqs  ${ANALYSIS_FOLDER}/cutadapt_trimmed_reads/trimmed_sequences.qza \
- --output-dir ${ANALYSIS_FOLDER}/joined_reads
+ --o-joined-sequences ${ANALYSIS_FOLDER}/joined_reads/joined_sequences.qza
 
 }
 

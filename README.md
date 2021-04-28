@@ -11,37 +11,7 @@ This pipeline takes raw Illumina paired-end fastq reads as input, performs adapt
 The following is required to run this pipeline:
 - x86_64 Linux OS
 - Conda ((If not installed see [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) ))
-- Paired-end Illumina fastq files
-
-
-## Test data
-
-To test if the pipeline is working correctly, please edit the `run_ampliconseq.sh` script and uncomment the `test_data` function 
-
-```bash
-
-ampliconseq_analysis_main(){
-   create_folders 
-   set_variables # -> Never comment this function
-   #test_data # -> Uncomment this function if you want to run pipeline on test data
-   import_data 
-   run_cutadapt 
-   run_joinpairs  
-   run_qualityfiltering 
-   run_deblur 
-   run_classification 
-   run_filterfeatures #change to num of samples in your data
-   run_viewfeatures 
-   run_filterabundance
-   run_barplot 
-   echo $LINKPATH_DB
-}
-```
-
-This will download a small test dataset and execute the pipeline to ensure everything is working correctly.
-The data sourced from folder on HPC:
-`/usr/share/sequencing/miseq/output/210326_M01745_0309_000000000-JK55H/Data/Intensities/BaseCalls`
-
+- Paired-end Illumina fastq files 
 
 ## Getting Started
 
@@ -73,6 +43,8 @@ conda activate qiime2
 
 6. Provide the full path to your reads folder by editing the READS variable in the `run_ampliconseq.sh` script :
 
+**IMPORTANT! Please only edit `READS`and uncomment `test_data` function (if you want to test pipeline) as shown - do not alter other sections of the `run_ampliconseq.sh` script!**
+
 ```
 #!/usr/bin/env bash
 ### Workflow for amplicon sequencing analysis pipeline
@@ -86,12 +58,60 @@ echo "Please Check File Paths in run_ampliconseq.sh"
 READS='/FULL/PATH/TO/DIR/' #plug in the full path to your data 
 ```
 
-7. Run the pipeline:
+7. Modify the `metadata.txt` template in the `docs` directory and record your file names and final sample names (*Keep as is if running the test_data*)
+
+For instructions on completing the `metadata.txt` 
+SampleID  | Sample
+------------- | -------------
+fastq_file_name (*_R*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sample_A_2
+
+## Test data
+
+To test if the pipeline is working correctly, please edit the `run_ampliconseq.sh` script and uncomment the `test_data` function
+
+**IMPORTANT: When running pipeline with your own data, please ensure test data funciton is commented**
+
+```bash
+
+ampliconseq_analysis_main(){
+   create_folders 
+   set_variables # -> Never comment this function
+#   test_data # -> remove '#' before `test_data` to test pipeline
+   import_data 
+   run_cutadapt 
+   run_joinpairs  
+   run_qualityfiltering 
+   run_deblur 
+   run_classification 
+   run_conditionalfilter 
+   run_barplot
+   echo $LINKPATH_DB
+}
+
+```
+
+This will download a small test dataset and execute the pipeline to ensure everything is working correctly.
+The data sourced from folder on HPC:
+`/usr/share/sequencing/miseq/output/210326_M01745_0309_000000000-JK55H/Data/Intensities/BaseCalls`
+
+## Running the Pipeline
+
 ```
 ./run_ampliconseq.sh
 ```
 
-8. Output will be located in the `nibsc_ampliconseq/analysis/` folder
+## Accessing the Output
+
+The taxonomy barplot `barplots.qzv` will be located in the `nibsc_ampliconseq/analysis/deblur` folder.
+
+1. Download `barplots.qzv` and upload this table to QIIME2 VIEW [here](https://view.qiime2.org/).
+
+2. Select level 6 from the 'Taxonomic Level' dropdown menu
+
+3. Select 'CSV' from the 'Downloads' table to download the taxa abundance estimates
+
+**IMPORTANT: Please refer to the CS690 protocol for guidance on the final abundance table layout**
+
 
 ## Pipeline Execution & Parameters
 
@@ -158,4 +178,6 @@ The pipeline scripts are located within `nibsc_ampliconseq/scripts` directory.
 --o-visualization : output visualisation object (*.qzv) 
 
 ## Acknowledgements
+Developing standards for the microbiome field Gregory C. A. Amos, Alastair Logan, Saba Anwar, Martin Fritzsche, Ryan Mate, Thomas Bleazard & Sjoerd Rijpkema Gregory Microbiome Journal, 2020 (in press,https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00856-3 )
+
 Current Challenges and Best Practice Protocols for Microbiome Analysis Richa Bharti, Dominik G Grimm Briefings in Bioinformatics (BIB), 2019 (in press, https://doi.org/10.1093/bib/bbz155)

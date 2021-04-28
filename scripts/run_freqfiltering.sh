@@ -17,7 +17,7 @@ cd ${ANALYSIS_FOLDER}
 
 qiime feature-table filter-features \
   --i-table ${ANALYSIS_FOLDER}/deblur/sample-contingency-filtered-table.qza \
-  --p-min-frequency 1610 \
+  --p-min-frequency  \
   --o-filtered-table ${ANALYSIS_FOLDER}/deblur/final-filtered-table.qza
 
 }

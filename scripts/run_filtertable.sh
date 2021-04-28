@@ -11,7 +11,7 @@ tfilter_main(){
 filter_table(){
 
 cd ${ANALYSIS_FOLDER}
-# change this function for final (min samples = 5)
+# change this function for minimum number of samples
 
 qiime feature-table filter-features  \
 --i-table ${ANALYSIS_FOLDER}/deblur/table-deblur.qza  \
