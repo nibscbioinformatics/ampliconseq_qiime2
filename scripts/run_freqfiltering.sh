@@ -2,6 +2,8 @@
 
 ## frequency filtering (adjust parameters as necessary)
 ## remove features < 0.005% total abundance
+## Old script - replaced by run_conditionalfilter.sh
+
 
 freqfilter_main(){
 	

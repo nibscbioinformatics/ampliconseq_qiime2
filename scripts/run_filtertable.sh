@@ -2,6 +2,7 @@
 
 ## Filter the deblur feature table to keep only featues present in all samples
 ## Adjust p-min-samples to your number of samples
+## Old script - replaced by run_conditionalfilter.sh
 
 tfilter_main(){
 	

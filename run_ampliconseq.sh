@@ -3,27 +3,30 @@
 
 ### Workflow for amplicon sequencing analysis pipeline
 
-## Root folder name
+## Root folder name - folder to store all pipeline output
 NAME=nibsc_ampliconseq
+
+## PLEASE DO NOT ALTER THIS LINE!
+rm -rv $(pwd)/${NAME}/{analysis,tools,rawdata,example_data} ## remove results from old runs 
 
 echo "Please ensure READS filepath is correct in run_ampliconseq.sh"
 
 ## data file locations
-READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/06_04_21_16S_Amplicon/ampliconseq_qiime2/rawdata/' #change to your data directory (include '/' at end of path)
+READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/test/testdata/16S_data' #change full path your data directory (include '/' at end of path)
 
 ## Comment out to remove individual process
 
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-#   test_data # -> remove '#' before `test_data` to test pipeline
+#   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
    import_data 
    run_cutadapt 
    run_joinpairs  
    run_qualityfiltering 
    run_deblur 
    run_classification 
-   run_conditionalfilter #retain features detected in all samples & above 0.005% frequency
+   run_conditionalfilter # threshold: retain features detected in all samples & above 0.005% frequency
    run_barplot
    echo $LINKPATH_DB
 }
@@ -152,7 +155,7 @@ run_classification(){
    cd -
 }
 
-# Filter the feature table produced by deblur to keep only features appearing in all replicates (set num of samples!)
+# depreciated script.. see run_conditionalfilter.sh
 
 run_filterfeatures(){
    echo "Running Feature Filter"
@@ -163,7 +166,7 @@ run_filterfeatures(){
    cd -
 }
 
-# View feature table 
+ # depreciated script.. see run_conditionalfilter.sh
 
 run_viewfeatures(){
    echo "Produce Filter Table"
@@ -174,8 +177,7 @@ run_viewfeatures(){
    cd -
 }
 
-# Filter features below 0.005% total abundance 
-# Compare with conditional filtering function 
+# depreciated script.. see run_conditionalfilter.sh
 
 run_filterabundance(){
    echo " Filter Table Abundances"
@@ -186,6 +188,7 @@ run_filterabundance(){
    cd ../../
 }
 
+# Remove features not in all samples and below 0.005% total abundance 
 
 run_conditionalfilter(){
 
@@ -196,6 +199,8 @@ run_conditionalfilter(){
    echo 'DONE Conditional Filter!'
    cd ../../
 }
+
+# Visualise estimated abundances
 
 run_barplot(){
    echo " Visualising Abundances"
