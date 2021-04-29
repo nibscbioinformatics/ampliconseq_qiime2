@@ -28,20 +28,18 @@ wget https://data.qiime2.org/2021.2/common/silva-138-99-515-806-nb-classifier.qz
 mv silva-138-99-515-806-nb-classifier.qza docs/
 ```
 
-3. Populate the metadata template in the `docs` folder with your experiments specifications. Please follow QIIME2 metadata guidelines [here](https://docs.qiime2.org/2021.2/tutorials/metadata/)
-
-4. Acitvate conda & build the conda qiime2 environment:
+3. Acitvate conda & build the conda qiime2 environment:
 ```
 conda activate
 conda env create -n qiime2 --file docs/qiime2.yml
 ```
 
-5. Activate the Qiime2 environment:
+4. Activate the Qiime2 environment:
 ```
 conda activate qiime2
 ```
 
-6. Provide the full path to your reads folder by editing the READS variable in the `run_ampliconseq.sh` script :
+5. Provide the full path to your reads folder by editing the READS variable in the `run_ampliconseq.sh` script :
 
 **IMPORTANT! Please only edit `READS`and uncomment `test_data` function (if you want to test pipeline) as shown - do not alter other sections of the `run_ampliconseq.sh` script!**
 
@@ -58,7 +56,8 @@ echo "Please Check File Paths in run_ampliconseq.sh"
 READS='/FULL/PATH/TO/DIR/' #plug in the full path to your data 
 ```
 
-7. Modify the `metadata.txt` template in the `docs` directory and record your file names and final sample names (*Keep as is if running the test_data*)
+6. Modify the `metadata.txt` template in the `docs` directory and record your file names and final sample names (*Keep as is if running the test_data*)
+For instructions on using QIIME2 metadata see guidelines [here](https://docs.qiime2.org/2021.2/tutorials/metadata/)
 
 Please fill out the `metadata.txt` as follows:
 SampleID  | Sample
