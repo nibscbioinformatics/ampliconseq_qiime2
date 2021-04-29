@@ -95,6 +95,8 @@ The data sourced from folder on HPC:
 
 ## Running the Pipeline
 
+To execute the pipeline:
+
 ```
 ./run_ampliconseq.sh
 ```
@@ -105,12 +107,36 @@ The taxonomy barplot `barplots.qzv` will be located in the `nibsc_ampliconseq/an
 
 1. Download `barplots.qzv` and upload this table to QIIME2 VIEW [here](https://view.qiime2.org/).
 
-2. Select level 6 from the 'Taxonomic Level' dropdown menu
+2. Select level 7 from the 'Taxonomic Level' dropdown menu
 
 3. Select 'CSV' from the 'Downloads' table to download the taxa abundance estimates
 
 **IMPORTANT: Please refer to the CS690 protocol for guidance on the final abundance table layout**
 
+## Overview of ampliconseq_qiime2 Directory
+
+```bash
+   |-docs
+   |-nibsc_ampliconseq
+   |---analysis
+   |-----cutadapt_trimmed_reads
+   |-----deblur
+   |-------classification_output
+   |-------filtered_frequency_table
+   |-----import_data
+   |-----joined_reads
+   |-----QC_reads
+   |---rawdata
+   |---tools
+   |-scripts
+
+```
+The `docs` folder contains the metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment.
+The `scripts` folder contains all the bash scripts used to execute the pipeline
+The `nibsc_ampliconseq` folder houses all the output from the pipeline (`analysis`), the pipeline input (`rawreads`) and resources (`tools`). This includes:
+- The `analysis` folder which contains all the output. The main output is located within the `deblur` folder, where the taxon abundance plots `barplot.qvz` and the filtered feature table `filter_table.qzv`.
+- The `rawdata` folder contains the raw read input specifed in `READS` path
+- The `tools` directory contains metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment (mirror of `docs`)
 
 ## Pipeline Execution & Parameters
 
@@ -180,3 +206,5 @@ The pipeline scripts are located within `nibsc_ampliconseq/scripts` directory.
 Developing standards for the microbiome field Gregory C. A. Amos, Alastair Logan, Saba Anwar, Martin Fritzsche, Ryan Mate, Thomas Bleazard & Sjoerd Rijpkema Gregory Microbiome Journal, 2020 (in press,https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00856-3 )
 
 Current Challenges and Best Practice Protocols for Microbiome Analysis Richa Bharti, Dominik G Grimm Briefings in Bioinformatics (BIB), 2019 (in press, https://doi.org/10.1093/bib/bbz155)
+
+##

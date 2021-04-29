@@ -7,7 +7,7 @@
 NAME=nibsc_ampliconseq
 
 ## PLEASE DO NOT ALTER THIS LINE!
-rm -rv $(pwd)/${NAME}/{analysis,tools,rawdata,example_data} ## remove results from old runs 
+rm -r $(pwd)/${NAME}/{analysis,tools,rawdata,example_data} ## remove results from old runs 
 
 echo "Please ensure READS filepath is correct in run_ampliconseq.sh"
 
@@ -58,9 +58,9 @@ set_variables(){
 
    #soft link files 
    echo "Lnking Folders"
-   ln -s -fsv $(pwd)/docs/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/
-   ln -s -fsv ${READS}/*.fastq.gz ${RAWDATA_FOLDER}
-   ln -s -fsv $(pwd)/docs/metadata.txt  ${TOOLS_FOLDER}/
+   ln -s -fs $(pwd)/docs/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/
+   ln -s -fs ${READS}/*.fastq.gz ${RAWDATA_FOLDER}
+   ln -s -fs $(pwd)/docs/metadata.txt  ${TOOLS_FOLDER}/
 
    #echo "DONE linking folders!"
 }
@@ -204,7 +204,6 @@ run_conditionalfilter(){
 
 run_barplot(){
    echo " Visualising Abundances"
-   echo $pwd
 
    . ./scripts/run_barplot.sh
 

@@ -14,7 +14,6 @@ import_data(){
 cd ${ANALYSIS_FOLDER}
 mkdir -p ${ANALYSIS_FOLDER}/import_data
 
-echo qiime tools import --input-format CasavaOneEightSingleLanePerSampleDirFmt --type 'SampleData[PairedEndSequencesWithQuality]' --input-path ${RAWDATA_FOLDER} --output-path ${ANALYSIS_FOLDER}/import_data/demux.qza 
 qiime tools import --input-format CasavaOneEightSingleLanePerSampleDirFmt --type 'SampleData[PairedEndSequencesWithQuality]' --input-path ${RAWDATA_FOLDER} --output-path ${ANALYSIS_FOLDER}/import_data/demux.qza 
 
 }
