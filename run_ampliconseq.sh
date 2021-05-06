@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 
+set -euo pipefail # error handling
 
 ### Workflow for amplicon sequencing analysis pipeline
 
 ## Root folder name - folder to store all pipeline output
-NAME=nibsc_ampliconseq
+NAME=NIBSC_CS690_M2R
 
-## PLEASE DO NOT ALTER THIS LINE!
-rm -r $(pwd)/${NAME}/{analysis,tools,rawdata,example_data} ## remove results from old runs 
+## PLEASE DO NOT ALTER THIS SECTION! 
+## Clean-up from previous run
+array=("$(pwd)/${NAME}/analysis" "$(pwd)/${NAME}/rawdata" "$(pwd)/${NAME}/example_data" "$(pwd)/${NAME}/tools")
+
+for dir in "${array[@]}"
+do
+   if [ -d "$dir" ]; then
+      echo "removing $dir"
+      rm -r "$dir"
+   fi
+done 
 
 echo "Please ensure READS filepath is correct in run_ampliconseq.sh"
 
@@ -19,7 +29,7 @@ READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/test/testdata/16S_data' #cha
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-#   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
+# test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
    import_data 
    run_cutadapt 
    run_joinpairs  
@@ -54,8 +64,7 @@ set_variables(){
    export TOOLS_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/tools
    export RAWDATA_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/rawdata
    export ANALYSIS_FOLDER=$(pwd)/$ROOT_FOLDER_NAME/analysis
-   export LINKPATH_DB=$LINKPATH_DB
-
+  
    #soft link files 
    echo "Lnking Folders"
    ln -s -fs $(pwd)/docs/silva-138-99-515-806-nb-classifier.qza  ${TOOLS_FOLDER}/

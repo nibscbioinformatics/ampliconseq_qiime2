@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # filter out features not present in all reps and low abundance (< 0.005) features
 
 condfilter_main(){

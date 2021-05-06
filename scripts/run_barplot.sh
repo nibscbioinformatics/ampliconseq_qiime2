@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### barplot of taxon abundances (adjust parameters as necessary)
 
 barplot_main(){

@@ -48,7 +48,7 @@ conda activate qiime2
 ### Workflow for amplicon sequencing analysis pipeline
 
 ## Root folder name
-NAME=nibsc_ampliconseq
+NAME=NIBSC_CS690_M2R
 
 echo "Please Check File Paths in run_ampliconseq.sh"
 
@@ -103,7 +103,7 @@ To execute the pipeline:
 
 ## Accessing the Output
 
-The taxonomy barplot `barplots.qzv` will be located in the `nibsc_ampliconseq/analysis/deblur` folder.
+The taxonomy barplot `barplots.qzv` will be located in the `NIBSC_CS690_M2R/analysis/deblur` folder.
 
 1. Download `barplots.qzv` and upload this table to QIIME2 VIEW [here](https://view.qiime2.org/).
 
@@ -117,7 +117,7 @@ The taxonomy barplot `barplots.qzv` will be located in the `nibsc_ampliconseq/an
 
 ```bash
    |-docs
-   |-nibsc_ampliconseq
+   |-NIBSC_CS690_M2R
    |---analysis
    |-----cutadapt_trimmed_reads
    |-----deblur
@@ -133,14 +133,14 @@ The taxonomy barplot `barplots.qzv` will be located in the `nibsc_ampliconseq/an
 ```
 The `docs` folder contains the metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment.
 The `scripts` folder contains all the bash scripts used to execute the pipeline
-The `nibsc_ampliconseq` folder houses all the output from the pipeline (`analysis`), the pipeline input (`rawreads`) and resources (`tools`). This includes:
+The `NIBSC_CS690_M2R` folder houses all the output from the pipeline (`analysis`), the pipeline input (`rawreads`) and resources (`tools`). This includes:
 - The `analysis` folder which contains all the output. The main output is located within the `deblur` folder, where the taxon abundance plots `barplot.qvz` and the filtered feature table `filter_table.qzv`.
 - The `rawdata` folder contains the raw read input specifed in `READS` path
 - The `tools` directory contains metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment (mirror of `docs`)
 
 ## Pipeline Execution & Parameters
 
-The pipeline scripts are located within `nibsc_ampliconseq/scripts` directory.
+The pipeline scripts are located within `NIBSC_CS690_M2R/scripts` directory.
 *NB* Please adapt the parameters based on your data type/quality etc.
 
 **Import Data** *Parameters*

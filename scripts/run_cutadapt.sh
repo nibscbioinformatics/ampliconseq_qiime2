@@ -14,7 +14,7 @@ mkdir -p ${ANALYSIS_FOLDER}/cutadapt_trimmed_reads
 
 qiime cutadapt  trim-paired  \
  --i-demultiplexed-sequences ${ANALYSIS_FOLDER}/import_data/demux.qza \
- --p-cores 4 --verbose  \
+ --p-cores 4 \
  --p-adapter-f GTGYCAGCMGCCGCGGTAA...ATTAGAWACCCBNGTAGTCC \
  --p-adapter-r GGACTACNVGGGTWTCTAAT...TTACCGCGGCKGCTGRCAC \
  --o-trimmed-sequences ${ANALYSIS_FOLDER}/cutadapt_trimmed_reads/trimmed_sequences.qza

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### View Filter Table Output (use to inform threshold for )
 ### Old script -replaced by run_conditionalfilter.sh
 
