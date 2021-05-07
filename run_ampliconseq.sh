@@ -29,7 +29,7 @@ READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/test/testdata/16S_data' #cha
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-# test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
+#   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
    import_data 
    run_cutadapt 
    run_joinpairs  
@@ -84,13 +84,16 @@ test_data(){
    export RAWDATA_FOLDER=$(pwd)/${ROOT_FOLDER_NAME}/example_data #change input folder to example
    cd ${RAWDATA_FOLDER}
 
-   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R1_001.fastq.gz .
-   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R2_001.fastq.gz .
-   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R1_001.fastq.gz .
-   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R2_001.fastq.gz .
+#   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R1_001.fastq.gz .
+#   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2a_S62_L001_R2_001.fastq.gz .
+#   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R1_001.fastq.gz .
+#   cp /usr/share/sequencing/miseq/output/200325_M01745_0264_000000000-CPKV4/Data/Intensities/BaseCalls/323-FD2b_S63_L001_R2_001.fastq.gz .
 
-   #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_1.fastq.gz
-   #wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/039/SRR11487939/SRR11487939_2.fastq.gz
+   curl -OJL https://sra-download.ncbi.nlm.nih.gov/traces/sra18/SRZ/014462/SRR14462031/323-FD2b_S63_L001_R1_001.fastq.gz . 
+   curl -OJL https://sra-download.ncbi.nlm.nih.gov/traces/sra18/SRZ/014462/SRR14462031/323-FD2b_S63_L001_R2_001.fastq.gz . 
+   curl -OJL https://sra-download.ncbi.nlm.nih.gov/traces/sra9/SRZ/014462/SRR14462032/323-FD2a_S62_L001_R1_001.fastq.gz . 
+   curl -OJL https://sra-download.ncbi.nlm.nih.gov/traces/sra9/SRZ/014462/SRR14462032/323-FD2a_S62_L001_R2_001.fastq.gz . 
+   
    cd -
 
    echo "DONE copying test data"

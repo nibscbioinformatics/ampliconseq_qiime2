@@ -1,5 +1,5 @@
 sampleid	Sample
-355-FD2-1 	sample_code_1
-355-FD2-2 	sample_code_2
+323-FD2a 	sample_code_1
+323-FD2b	sample_code_2
 
 
