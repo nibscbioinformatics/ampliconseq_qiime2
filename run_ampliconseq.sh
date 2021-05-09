@@ -22,14 +22,14 @@ done
 echo "Please ensure READS filepath is correct in run_ampliconseq.sh"
 
 ## data file locations
-READS='/home/AD/mgordon/PROJECTS/Microbiome_Project/test/testdata/16S_data' #change full path your data directory (include '/' at end of path)
+READS='/FULL/PATH/TO/DIRECTORY' #change full path your data directory (include '/' at end of path)
 
 ## Comment out to remove individual process
 
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-#   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
+   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
    import_data 
    run_cutadapt 
    run_joinpairs  
