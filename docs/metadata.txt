@@ -1,4 +1,4 @@
-sampleid	Sample
+sampleid	sample
 323-FD2a 	sample_code_1
 323-FD2b	sample_code_2
 

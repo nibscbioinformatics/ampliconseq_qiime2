@@ -38,7 +38,6 @@ ampliconseq_analysis_main(){
    run_classification 
    run_conditionalfilter # threshold: retain features detected in all samples & above 0.005% frequency
    run_barplot
-   echo $LINKPATH_DB
 }
 
 

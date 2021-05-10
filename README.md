@@ -1,7 +1,6 @@
 <img src="https://static.wixstatic.com/media/e40e76_52d2db31e5264d31aaea0319cb583acf~mv2.png/v1/fill/w_380,h_358,al_c,q_85,usm_0.66_1.00_0.01/NIBSC%20square.webp" alt="Logo of the project" align="right">
 
 # NIBSC 16S Amplicon Sequencing Pipeline  &middot; 
-[![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) 
 > QIIME2 16S Taxonomic Classification  
 
 This pipeline takes raw Illumina paired-end fastq reads as input, performs adapter & primer trimming, read merging, quality trimming, deblur feature identification and taxonomic classification of features using a Naive Bayes Classifer trained on the SILVA 138 release.
@@ -10,7 +9,7 @@ This pipeline takes raw Illumina paired-end fastq reads as input, performs adapt
 
 The following is required to run this pipeline:
 - x86_64 Linux OS
-- Conda ((If not installed see [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) ))
+- Conda (If not installed see [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) )
 - Paired-end Illumina fastq files 
 
 ## Getting Started
@@ -36,7 +35,6 @@ conda --version
 
 4. Acitvate conda & build the conda qiime2 environment:
 ```
-conda activate
 conda env create -n qiime2 --file docs/qiime2.yml
 ```
 
@@ -47,7 +45,7 @@ conda activate qiime2
 
 6. Provide the full path to your reads folder by editing the READS variable in the `run_ampliconseq.sh` script :
 
-**IMPORTANT! Please only edit `READS`and uncomment `test_data` function (if you want to test pipeline) as shown - do not alter other sections of the `run_ampliconseq.sh` script!**
+**IMPORTANT! Please only edit `READS`and uncomment `test_data` function (see Test Data section below) as shown - do not alter other sections of the `run_ampliconseq.sh` script!**
 
 ```
 #!/usr/bin/env bash
@@ -66,7 +64,7 @@ READS='/FULL/PATH/TO/DIR/' #plug in the full path to your data
 For instructions on using QIIME2 metadata see guidelines [here](https://docs.qiime2.org/2021.2/tutorials/metadata/)
 
 Please fill out the `metadata.txt` as follows:
-SampleID  | Sample
+sampleid  | sample
 ------------- | -------------
 fastq_file_name (\*_R\*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sample_A_2
 
@@ -74,7 +72,7 @@ fastq_file_name (\*_R\*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sam
 
 To test if the pipeline is working correctly, please edit the `run_ampliconseq.sh` script and uncomment the `test_data` function
 
-**IMPORTANT: When running pipeline with your own data, please ensure test data funciton is commented**
+**IMPORTANT: When running pipeline with your own data, please ensure test data function is commented**
 
 ```bash
 
@@ -113,7 +111,7 @@ The taxonomy barplot `barplots.qzv` will be located in the `NIBSC_CS690_M2R/anal
 
 1. Download `barplots.qzv` and upload this table to QIIME2 VIEW [here](https://view.qiime2.org/).
 
-2. Select level 7 from the 'Taxonomic Level' dropdown menu
+2. Select level 6 from the 'Taxonomic Level' dropdown menu
 
 3. Select 'CSV' from the 'Downloads' table to download the taxa abundance estimates
 
