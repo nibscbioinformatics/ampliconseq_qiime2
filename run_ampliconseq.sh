@@ -29,7 +29,7 @@ READS='/FULL/PATH/TO/DIRECTORY' #change full path your data directory (include '
 ampliconseq_analysis_main(){
    create_folders 
    set_variables # -> Never comment this function
-   test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
+  # test_data # -> remove '#' before `test_data` to test pipeline (restore `#``to run your data)
    import_data 
    run_cutadapt 
    run_joinpairs  
