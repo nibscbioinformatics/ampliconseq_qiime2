@@ -66,7 +66,7 @@ For instructions on using QIIME2 metadata see guidelines [here](https://docs.qii
 Please fill out the `metadata.txt` as follows:
 sampleid  | sample
 ------------- | -------------
-fastq_file_name (\*_R\*_001.fastq.gz)  | Recommended_file_name e.g LAB30_M2R_sample_A_2
+fastq_file_name e.g. the name before the asterisk “*”: *_R1_001.fastq.gz | Recommended_file_name as indicated in the CS690 protocol e.g LAB30_M2R_sample_A_2
 
 ## Test data
 
@@ -136,9 +136,9 @@ The taxonomy barplot `barplots.qzv` will be located in the `NIBSC_CS690_M2R/anal
 
 ```
 The `docs` folder contains the metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment.
-The `scripts` folder contains all the bash scripts used to execute the pipeline
-The `NIBSC_CS690_M2R` folder houses all the output from the pipeline (`analysis`), the pipeline input (`rawreads`) and resources (`tools`). This includes:
-- The `analysis` folder which contains all the output. The main output is located within the `deblur` folder, where the taxon abundance plots `barplot.qvz` and the filtered feature table `filter_table.qzv`.
+The `scripts` folder contains all the bash scripts used to execute the pipeline.
+The `NIBSC_CS690_M2R` folder houses all the output from the pipeline (`analysis`), the pipeline input (`rawdata`) and resources (`tools`).
+- The `analysis` folder contains all the output. The main output is located within the `deblur` folder, where the taxon abundance plots `barplot.qvz` and the filtered feature table `filter_table.qzv`.
 - The `rawdata` folder contains the raw read input specifed in `READS` path
 - The `tools` directory contains metadata template `metadata.txt` and the `qiime2.yml` used to create the conda environment (mirror of `docs`)
 
