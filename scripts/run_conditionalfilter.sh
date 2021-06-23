@@ -3,7 +3,7 @@
 # filter out features present low abundance (< 0.005) features
 
 condfilter_main(){
-	
+
 	conditional_filter
 	summarise_table
 }
@@ -15,9 +15,9 @@ mkdir -p ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/
 
 qiime feature-table filter-features-conditionally \
  --i-table ${ANALYSIS_FOLDER}/deblur/table-deblur.qza \
- --p-prevalence 0.38 \ 
+ --p-prevalence 0.38 \
  --p-abundance 0.00005 \
- --o-filtered-table ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/filtered_table.qza 
+ --o-filtered-table ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/filtered_table.qza
 
 }
 
@@ -27,7 +27,7 @@ cd ${ANALYSIS_FOLDER}
 
 qiime feature-table summarize \
 --i-table ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/filtered_table.qza  \
---o-visualization ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/filtered_table.qzv 
+--o-visualization ${ANALYSIS_FOLDER}/deblur/filtered_frequency_table/filtered_table.qzv
 
 }
 
